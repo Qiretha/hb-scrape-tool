@@ -91,7 +91,7 @@ def send_discord_message(new_bundle, games_list):
     webhook.send(content=new_bundle,
                  avatar_url="https://cdn.humblebundle.com/static/hashed/03de04a2224923e1ff35c11a3a1cd0e675b5003e.png")
 
-    embed = discord.Embed(title="Games in this bundle by tier:", description=games_list, color=0xd0011b)
+    embed = discord.Embed(title="Games in this bundle:", description=games_list, color=0xd0011b)
     webhook.send(embed=embed)
 
 
@@ -111,12 +111,12 @@ def search_humble():
     for bundle in built_bundles:
         bundle_link = bundle[0]
         bundle_title = bundle[1]
-        cur.execute("SELECT COUNT(*) FROM humbleBundles WHERE name = %s OR link = %s;",
+        cur.execute("SELECT EXISTS(SELECT 1 FROM humbleBundles WHERE name = %s OR link = %s);",
                     (bundle_title, bundle_link))
 
         exists = cur.fetchone()[0]
 
-        if exists == 0:
+        if not exists:
             print("New bundle " + bundle_title.lower() + " found!")
 
             get_list_of_games(bundle_link)
@@ -129,7 +129,7 @@ def search_humble():
             time.sleep(1)
         else:
             # If bundle has been seen before, print message and continue to next bundle
-            print(bundle_title + " already found...")
+            print(bundle_title + " already found, ignoring...")
 
 
 # Press the green button in the gutter to run the script.
