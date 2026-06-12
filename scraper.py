@@ -11,7 +11,7 @@ from discord import SyncWebhook
 
 # To-do
 # - figure out adding multiple webhooks
-# - code clean up. There's too much going on in some of the functions
+# - code clean up. Too much going on in some of the functions
 # - improve display of multi-tier bundles
 
 driver = webdriver.Firefox()
