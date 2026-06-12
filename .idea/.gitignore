@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+.idea/
+HB-scraper/geckodriver.log
+/misc.xml
+/modules.xml
+/inspectionProfiles/profiles_settings.xml
+*.iml
