@@ -16,7 +16,6 @@ from discord import SyncWebhook
 
 driver = webdriver.Firefox()
 
-
 def get_game_tiers():
     # game tiers
     games_collection = driver.find_elements(By.XPATH, "//span[@class='item-title']")
@@ -126,7 +125,7 @@ def search_humble():
 
             get_list_of_games(bundle_link)
 
-            # Save the new bundle in the database so that it is ignored next time.
+            # Save the new bundle in the database to ignore it next time.
             cur.execute("INSERT INTO humblebundles "
                         "VALUES (%s, %s);",
                         (bundle_title, bundle_link))
